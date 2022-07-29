@@ -1,0 +1,44 @@
+@startuml
+
+class Connect4
+class YesNoDialogView
+class Board{
+    - holes[][]
+    + isEmptyHole(coordinate)
+}
+class BoardView
+class Coordinate
+class Token{
+    - Color
+    - Coordinate
+}
+class Turn{
+    - Player
+    + nextTurn()
+    + getCoordinate()
+}
+
+class TurnView
+class Result
+enum Colors{
+Red
+Yellow
+}
+
+Connect4 ..> BoardView
+Connect4 ..> YesNoDialogView
+
+BoardView ..> Board
+BoardView ..> TurnView
+TurnView ..> Turn
+Board --> Result
+Board --> Coordinate
+
+Board o--> Token
+
+Turn ..> Token
+
+
+Token *--> Colors
+Token ..> Coordinate
+@enduml
